@@ -10,4 +10,9 @@ class UsersController < ApplicationController
 
     render("users/show.html.erb")
   end
+
+  # def destroy
+  #   @users = User.find(params[:id])
+  #   @users.destroy
+  # end
 end
