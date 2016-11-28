@@ -22,11 +22,10 @@ class LikesController < ApplicationController
 
     @like.user_id = params[:user_id]
     @like.photo_id = params[:photo_id]
-    previous_url = params[:previous_url]
     save_status = @like.save
 
     if save_status == true
-      redirect_to("/#{previous_url}", :notice => "Like created successfully.")
+      redirect_to(:back, :notice => "Like created successfully.")
     else
       render("likes/new.html.erb")
     end
