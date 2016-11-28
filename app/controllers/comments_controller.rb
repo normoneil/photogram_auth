@@ -23,11 +23,11 @@ class CommentsController < ApplicationController
     @comment.photo_id = params[:photo_id]
     @comment.body = params[:body]
     @comment.user_id = params[:user_id]
-
+    previous_url = params[:previous_url]
     save_status = @comment.save
 
     if save_status == true
-      redirect_to("/comments/#{@comment.id}", :notice => "Comment created successfully.")
+      redirect_to("/#{previous_url}", :notice => "Comment created successfully.")
     else
       render("comments/new.html.erb")
     end
