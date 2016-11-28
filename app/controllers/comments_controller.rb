@@ -44,12 +44,11 @@ class CommentsController < ApplicationController
 
     @comment.photo_id = params[:photo_id]
     @comment.body = params[:body]
-    @comment.user_id = params[:user_id]
 
     save_status = @comment.save
 
     if save_status == true
-      redirect_to("/comments/#{@comment.id}", :notice => "Comment updated successfully.")
+      redirect_to(:back, :notice => "Comment updated successfully.")
     else
       render("comments/edit.html.erb")
     end
@@ -57,7 +56,6 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-
     @comment.destroy
 
     if URI(request.referer).path == "/comments/#{@comment.id}"

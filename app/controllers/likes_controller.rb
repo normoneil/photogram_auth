@@ -22,11 +22,11 @@ class LikesController < ApplicationController
 
     @like.user_id = params[:user_id]
     @like.photo_id = params[:photo_id]
-
+    previous_url = params[:previous_url]
     save_status = @like.save
 
     if save_status == true
-      redirect_to("/likes/#{@like.id}", :notice => "Like created successfully.")
+      redirect_to("/#{previous_url}", :notice => "Like created successfully.")
     else
       render("likes/new.html.erb")
     end
@@ -55,13 +55,8 @@ class LikesController < ApplicationController
 
   def destroy
     @like = Like.find(params[:id])
-
+    previous_url = params[:previous_url]
     @like.destroy
-
-    if URI(request.referer).path == "/likes/#{@like.id}"
-      redirect_to("/", :notice => "Like deleted.")
-    else
-      redirect_to(:back, :notice => "Like deleted.")
-    end
+    redirect_to(:back, :notice => "Like deleted.")
   end
 end

@@ -2,12 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root :to => "photos#index"
 
-  # Routes for the User resource:
-  get "/users", :controller => "users", :action => "index"
-  get "/users/:id", :controller => "users", :action => "show"
-  get "/my_likes", :controller => "users", :action => "my_likes"
-  # get "/delete_user/:id", :controller => "users", :action => "destroy"
-  #------------------------------
+    #------------------------------
 
   # Routes for the Comment resource:
   # CREATE
@@ -40,7 +35,7 @@ Rails.application.routes.draw do
   post "/update_like/:id", :controller => "likes", :action => "update"
 
   # DELETE
-  get "/delete_like/:id", :controller => "likes", :action => "destroy"
+  post "/delete_like/:id", :controller => "likes", :action => "destroy"
   #------------------------------
 
   # Routes for the Photo resource:
@@ -59,6 +54,13 @@ Rails.application.routes.draw do
   # DELETE
   get "/delete_photo/:id", :controller => "photos", :action => "destroy"
   #------------------------------
+
+  # Routes for the User resource:
+  get "/users", :controller => "users", :action => "index"
+  get "/users/:id", :controller => "users", :action => "show"
+  get "/my_likes", :controller => "users", :action => "my_likes"
+  # get "/delete_user/:id", :controller => "users", :action => "destroy"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
